@@ -9,7 +9,7 @@ jobs:
    - name: build_package
      run: |
       cd solver_application
-      cmake -CPACK_GENERATOR_RPM=ON -B ./solver_output
+      cmake -DCPACK_GENERATOR_RPM=ON -B ./solver_output
       cd solver_output
       make package
       make package_source
