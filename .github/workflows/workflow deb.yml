@@ -4,7 +4,7 @@ on:
   tags:
    - "deb_v*"
 jobs:
- build_and_release_deb:
+ build_and_release:
   runs-on: ubuntu-latest
   steps:
    - name: checkout
@@ -23,7 +23,7 @@ jobs:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      with:
        tag_name: ${{ github.ref }}
-       release_name: Release {{ github.ref }}
+       release_name: Release ${{ github.ref }}
        draft: false
        prerelease: false
    - name: Upload Release Asset
