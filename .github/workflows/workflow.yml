@@ -9,7 +9,7 @@ jobs:
    - name: build_package
      run: |
       cd solver_application
-      cmake -B ./solver_output
+      cmake -CPACK_GENERATOR_RPM=ON -B ./solver_output
       cd solver_output
       make package
       make package_source
@@ -24,7 +24,7 @@ jobs:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      with:
        tag_name: someCustomTagName
-       release_name: Release ${{ github.ref }}
+       release_name: Release ${{ tag_name }}
        draft: false
        prerelease: false
    - name: Upload Release Asset
