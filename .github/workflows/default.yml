@@ -1,0 +1,24 @@
+name: DEFAULT
+on: [push]
+jobs:
+ build_and_release_default:
+  runs-on: ubuntu-latest
+  steps:
+   - name: checkout
+     uses: actions/checkout@master
+   - name: build_package
+     run: |
+      cd solver_application
+      cmake -B ./solver_output
+      cd solver_output
+      make package_source
+   - name: Create Release
+     id: create_release
+     uses: actions/create-release@v1
+     env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     with:
+       tag_name: ${{ github.ref }}
+       release_name: Release ${{ github.ref }}
+       draft: false
+       prerelease: false
