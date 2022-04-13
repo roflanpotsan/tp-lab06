@@ -2,7 +2,7 @@ name: lab06
 on: 
  push:
   tags:
-   - "deb_v*"
+   - "*deb_v*"
 jobs:
  build_and_release:
   runs-on: ubuntu-latest

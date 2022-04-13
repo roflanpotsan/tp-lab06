@@ -2,7 +2,7 @@ name: lab06
 on: 
  push:
   tags:
-   - "msi_v*"
+   - "*msi_v*"
 jobs:
  build_and_release:
   runs-on: windows-latest
@@ -14,8 +14,7 @@ jobs:
       cd solver_application
       cmake -DCPACK_GENERATOR_MSI=ON -B ./solver_output
       cd solver_output
-      make package
-      make package_source
+      msbuild package.vcxproj
       ls
    - name: Create Release
      id: create_release
