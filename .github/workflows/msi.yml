@@ -12,10 +12,11 @@ jobs:
    - name: build_package
      run: |
       cd solver_application
-      cmake -B ./solver_output
+      cmake -DCPACK_GENERATOR_WIX=ON -B ./solver_output
       cd solver_output
       dir
-      cpack -G "NSIS"
+      type cmake_install.cmake
+      cpack -G "WIX"
    - name: Create Release
      id: create_release
      uses: actions/create-release@v1
@@ -33,6 +34,6 @@ jobs:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      with:
        upload_url: ${{ steps.create_release.outputs.upload_url }}
-       asset_path: solver_application/solver_output/solver-0.1.1-Windows.msi
+       asset_path: solver_application/solver_output/solver-0.1.1-Linux.msi
        asset_name: solver.msi
        asset_content_type: application/msi
