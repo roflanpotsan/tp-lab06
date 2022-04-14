@@ -15,7 +15,7 @@ jobs:
       cmake -B ./solver_output
       cd solver_output
       dir
-      cpack -G "WIX"
+      cpack -G "NSIS"
    - name: Create Release
      id: create_release
      uses: actions/create-release@v1
